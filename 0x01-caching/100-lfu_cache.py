@@ -23,19 +23,19 @@ class LFUCache(BaseCaching):
         else:
             length = len(self.cache_data)
             if length >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
-                lfu = min(self.frequency.values())
-                lfu_keys = []
-                for key, value in self.frequency.items():
-                    if value == lfu:
-                        lfu_keys.append(k)
-                if len(lfu_keys) > 1:
-                    lru_lfu = {}
-                    for key in lfu_keys:
-                        lru_lfu[key] = self.usage.index(key)
-                    discard = min(lru_lfu.values())
+                lifu = min(self.frequency.values())
+                lifu_keys = []
+                for k, v in self.frequency.items():
+                    if v == lifu:
+                        lifu_keys.append(k)
+                if len(lifu_keys) > 1:
+                    liru_lifu = {}
+                    for k in lifu_keys:
+                        liru_lifu[k] = self.usage.index(k)
+                    discard = min(liru_lifu.values())
                     discard = self.usage[discard]
                 else:
-                    discard = lfu_keys[0]
+                    discard = lifu_keys[0]
 
                 print("DISCARD: {}".format(discard))
                 del self.cache_data[discard]
